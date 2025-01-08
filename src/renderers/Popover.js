@@ -97,8 +97,8 @@ function topProperties(hOptions, vOptions, isRTL) {
   const side = axisNegativeSideProperties(hOptions);
   return {
     position: {
-      top: side.position,
-      [getStartPosKey(isRTL)]: centered.position,
+      top: Number.isNaN(side.position) ? 0 : side.position,
+      [getStartPosKey(isRTL)]: Number.isNaN(centered.position) ? 0 : centered.position,
     },
     offset: centered.offset,
     placement: 'top',
@@ -110,8 +110,8 @@ function bottomProperties(hOptions, vOptions, isRTL) {
   const side = axisPositiveSideProperties(hOptions);
   return {
     position: {
-      top: side.position,
-      [getStartPosKey(isRTL)]: centered.position,
+      top: Number.isNaN(side.position) ? 0 : side.position,
+      [getStartPosKey(isRTL)]: Number.isNaN(centered.position) ? 0 : centered.position,
     },
     offset: centered.offset,
     placement: 'bottom',
@@ -123,8 +123,8 @@ function rightProperties(hOptions, vOptions, isRTL) {
   const side = axisPositiveSideProperties(vOptions);
   return {
     position: {
-      top: centered.position,
-      [getStartPosKey(isRTL)]: side.position,
+      top: Number.isNaN(centered.position) ? 0 : centered.position,
+      [getStartPosKey(isRTL)]: Number.isNaN(side.position) ? 0 : side.position,
     },
     offset: centered.offset,
     placement: 'right',
@@ -136,8 +136,8 @@ function leftProperties(hOptions, vOptions, isRTL) {
   const side = axisNegativeSideProperties(vOptions);
   return {
     position: {
-      top: centered.position,
-      [getStartPosKey(isRTL)]: side.position,
+      top: Number.isNaN(centered.position) ? 0 : centered.position,
+      [getStartPosKey(isRTL)]: Number.isNaN(side.position) ? 0 : side.position,
     },
     offset: centered.offset,
     placement: 'left',
