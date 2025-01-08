@@ -2819,8 +2819,8 @@
     var side = axisNegativeSideProperties(hOptions);
     return {
       position: _defineProperty({
-        top: side.position
-      }, getStartPosKey(isRTL), centered.position),
+        top: Number.isNaN(side.position) ? 0 : side.position
+      }, getStartPosKey(isRTL), Number.isNaN(centered.position) ? 0 : centered.position),
       offset: centered.offset,
       placement: 'top'
     };
@@ -2831,8 +2831,8 @@
     var side = axisPositiveSideProperties(hOptions);
     return {
       position: _defineProperty({
-        top: side.position
-      }, getStartPosKey(isRTL), centered.position),
+        top: Number.isNaN(side.position) ? 0 : side.position
+      }, getStartPosKey(isRTL), Number.isNaN(centered.position) ? 0 : centered.position),
       offset: centered.offset,
       placement: 'bottom'
     };
@@ -2843,8 +2843,8 @@
     var side = axisPositiveSideProperties(vOptions);
     return {
       position: _defineProperty({
-        top: centered.position
-      }, getStartPosKey(isRTL), side.position),
+        top: Number.isNaN(centered.position) ? 0 : centered.position
+      }, getStartPosKey(isRTL), Number.isNaN(side.position) ? 0 : side.position),
       offset: centered.offset,
       placement: 'right'
     };
@@ -2855,8 +2855,8 @@
     var side = axisNegativeSideProperties(vOptions);
     return {
       position: _defineProperty({
-        top: centered.position
-      }, getStartPosKey(isRTL), side.position),
+        top: Number.isNaN(centered.position) ? 0 : centered.position
+      }, getStartPosKey(isRTL), Number.isNaN(side.position) ? 0 : side.position),
       offset: centered.offset,
       placement: 'left'
     };
