@@ -1,6 +1,8 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
-import { View, BackHandler, SafeAreaView, StyleSheet } from 'react-native';
+import { View, BackHandler, StyleSheet } from 'react-native';
+
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { withContext } from './with-context';
 import makeMenuRegistry from './menuRegistry';
@@ -24,7 +26,7 @@ export const withCtx = withContext(PopupMenuContext, "ctx");
 // count of MenuProvider instances
 let instanceCount = 0;
 
-export default class MenuProvider extends Component {
+class MenuProviderLocal extends Component {
 
   constructor(props) {
     super(props);
@@ -222,8 +224,11 @@ export default class MenuProvider extends Component {
           ]}>
             { this.props.children }
           </View>
-          <SafeAreaView
-            style={styles.safeArea}
+          <View
+            style={{
+              position: 'absolute',
+              ...this.props.insets,
+            }}
             pointerEvents="box-none"
           >
             <View
@@ -236,7 +241,7 @@ export default class MenuProvider extends Component {
               backdropStyles={customStyles.backdrop}
               ref={this._onPlaceholderRef}
               />
-          </SafeAreaView>
+          </View>
         </View>
       </PopupMenuContext.Provider>
     );
@@ -343,6 +348,10 @@ export default class MenuProvider extends Component {
   }
 
 }
+
+const MenuProvider = withSafeAreaInsets(MenuProviderLocal);
+
+export default MenuProvider;
 
 MenuProvider.propTypes = {
   customStyles: PropTypes.object,
